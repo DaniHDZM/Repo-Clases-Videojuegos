@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://mmg56ajrn61s"]
+
+[ext_resource type="Script" uid="uid://txdbkmfxymu5" path="res://script/soldado.gd" id="1_0evpu"]
+[ext_resource type="Texture2D" uid="uid://db6poerdmwdvv" path="res://kenney_platformer-characters/PNG/Soldier/Poses/soldier_idle.png" id="1_tdd18"]
+[ext_resource type="Texture2D" uid="uid://btjf6sm1r56us" path="res://kenney_platformer-characters/PNG/Soldier/Poses/soldier_walk1.png" id="2_0evpu"]
+[ext_resource type="Texture2D" uid="uid://bomh3p7b3n1eh" path="res://kenney_platformer-characters/PNG/Soldier/Poses/soldier_walk2.png" id="3_hq6ua"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_opuef"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tdd18")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0evpu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hq6ua")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_716jv"]
+radius = 23.0
+height = 80.0
+
+[node name="Node2D" type="Area2D" groups=["enemies"]]
+script = ExtResource("1_0evpu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_opuef")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_716jv")

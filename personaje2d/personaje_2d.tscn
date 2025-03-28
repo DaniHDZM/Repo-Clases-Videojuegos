@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://sfsubhu7x8rk"]
+
+[ext_resource type="Texture2D" uid="uid://mn5h8x77em6j" path="res://kenney_platformer-characters/PNG/Zombie/Poses/zombie_idle.png" id="1_nj4vc"]
+[ext_resource type="Script" uid="uid://bt33lwhdc8y4t" path="res://script/personajeIncompleto.gd" id="1_x1ytl"]
+[ext_resource type="Texture2D" uid="uid://3eifhq3m1ofk" path="res://kenney_platformer-characters/PNG/Zombie/Poses/zombie_duck.png" id="2_x1ytl"]
+[ext_resource type="Texture2D" uid="uid://b0bftjeivdayb" path="res://kenney_platformer-characters/PNG/Zombie/Poses/zombie_fall.png" id="3_rabow"]
+[ext_resource type="Texture2D" uid="uid://scndltdr1n88" path="res://kenney_platformer-characters/PNG/Zombie/Poses/zombie_jump.png" id="4_ol055"]
+[ext_resource type="Texture2D" uid="uid://ypg6cblafgkv" path="res://kenney_platformer-characters/PNG/Zombie/Poses/zombie_walk1.png" id="5_30t2q"]
+[ext_resource type="Texture2D" uid="uid://b60xem54224lk" path="res://kenney_platformer-characters/PNG/Zombie/Poses/zombie_walk2.png" id="6_72fqb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k5bfd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nj4vc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x1ytl")
+}],
+"loop": true,
+"name": &"duck",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rabow")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nj4vc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ol055")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_30t2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_72fqb")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_rabow"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cmpga"]
+radius = 25.0
+height = 96.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_x1ytl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k5bfd")
+animation = &"duck"
+script = SubResource("GDScript_rabow")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 5)
+shape = SubResource("CapsuleShape2D_cmpga")
+script = SubResource("GDScript_rabow")
