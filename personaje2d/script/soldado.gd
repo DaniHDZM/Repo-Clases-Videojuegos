@@ -1,6 +1,6 @@
 extends Area2D
 
-var health = 100
+var health = 20
 
 func _ready():
 	add_to_group("enemies")
