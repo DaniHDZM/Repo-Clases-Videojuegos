@@ -73,10 +73,18 @@ script = ExtResource("1_x1ytl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_k5bfd")
-animation = &"duck"
+frame_progress = 0.00473286
 script = SubResource("GDScript_rabow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 5)
 shape = SubResource("CapsuleShape2D_cmpga")
 script = SubResource("GDScript_rabow")
+
+[node name="PowerUpTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_bottom = 600
+
+[connection signal="timeout" from="PowerUpTimer" to="." method="_on_power_up_timer_timeout"]

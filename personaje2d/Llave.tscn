@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm68pakdugpx"]
+
+[ext_resource type="Script" uid="uid://bwl73ulrqfu21" path="res://script/llave.gd" id="1_4diyh"]
+[ext_resource type="Texture2D" uid="uid://c1i2cvn477eyr" path="res://kenney_simplified-platformer-pack/PNG/Items/platformPack_item014.png" id="2_van6w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jt4s"]
+size = Vector2(48, 32)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_4diyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6jt4s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_van6w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

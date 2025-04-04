@@ -1,8 +1,26 @@
-extends AnimatedSprite2D
+extends Node2D
 
-@onready var sprite: AnimatedSprite2D = $"."  # Referencia al sprite animado del personaje
+@export var puerta_1: AnimatedSprite2D
+@export var puerta_2: AnimatedSprite2D
+# Referencia al sprite animado
+@export var duracion: float = 10.0   # Tiempo que la puerta permanecerá abierta
 
+func aplicar_power_up():
+	if puerta_1:
+		puerta_1.play("open")
+		puerta_2.play("open")
+		  # Cambia a la animación de abrirse
+		print("Puerta activada!")
 
-func _on_texture_button_pressed():
-	sprite.play("open")
-	pass
+		var timer = Timer.new()
+		timer.wait_time = duracion
+		timer.one_shot = true
+		timer.timeout.connect(func():
+			puerta_1.play("default")
+			puerta_2.play("default")
+			  # Regresa a la animación de cerrarse
+			print("Puerta desactivada")
+			timer.queue_free()
+		)
+		add_child(timer)
+		timer.start()

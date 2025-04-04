@@ -93,6 +93,8 @@ func dispara_bala():
 	var bala = HieloBalaScene.instantiate()
 	get_parent().add_child(bala)
 	bala.global_position = global_position 
+	bala.DAMAGE *= damage_multiplier  # Aplica el multiplicador de daño
+	
 	var bala_sprite = bala.get_node("AnimatedSprite2D")
 	if sprite.flip_h:
 		bala.SPEED = -abs(bala.SPEED)
@@ -100,3 +102,23 @@ func dispara_bala():
 	else:
 		bala.SPEED = abs(bala.SPEED)
 		bala_sprite.flip_h = false
+ 
+
+var damage_multiplier: float = 1.0  # Multiplicador de daño (por defecto 1x)
+var powerup_active: bool = false  # Indica si el power-up está activo
+
+
+func activate_damage_boost(duration):
+	var powerup_timer = get_node("PowerUpTimer")
+	if powerup_timer:
+			damage_multiplier = 2.0  # Duplica el daño
+			powerup_timer.start(duration)  # Inicia el temporizador
+			print("Power-up activado: Daño x2 por ", duration, " segundos.")
+	else:
+			print("Error: PowerupTimer no encontrado en el personaje.")
+
+func _on_power_up_timer_timeout():
+	if damage_multiplier == 1.0:
+		return  # 🚨 Evita que se imprima varias veces si ya está en daño normal
+	damage_multiplier = 1.0
+	print("Power-up terminado: Daño normal.")
